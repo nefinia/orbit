@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Orbit · Sofia Gallego</title>
+<meta name="description" content="Open funding calls, deadlines and project ideas Sofia Gallego is tracking. Machine-readable at orbit.json and llms.txt.">
+<link rel="alternate" type="application/json" href="orbit.json">
+<link rel="alternate" type="text/plain" href="llms.txt">
+<style>
+:root{--bg:#f3f4f8;--fg:#1b1e33;--muted:#5d6179;--line:#dcdfea;--accent:#3a47c9}
+@media (prefers-color-scheme:dark){:root{--bg:#10121f;--fg:#e6e8f5;--muted:#9a9eb8;--line:#2b2f47;--accent:#8f9bff;color-scheme:dark}}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;padding:32px 16px 64px}
+main{max-width:720px;margin:0 auto}
+h1{font:600 34px/1.1 Georgia,serif;margin:0 0 8px}
+h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:36px 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{margin:18px 0 4px;font-size:17px}
+a{color:var(--accent)}
+.muted{color:var(--muted)}
+.opp{padding:12px 0;border-bottom:1px solid var(--line)}
+.date{font:500 13px ui-monospace,Menlo,monospace;color:var(--accent)}
+.table-wrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<main>
+<h1>Orbit</h1>
+<p class="muted" id="about">Open funding calls, deadlines and project ideas Sofia Gallego is tracking.</p>
+<p class="muted">For AI assistants: the same content is at <a href="orbit.json">orbit.json</a> and <a href="llms.txt">llms.txt</a>.</p>
+<div id="content"><noscript>See <a href="orbit.json">orbit.json</a>.</noscript></div>
+</main>
+<script>
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=s=>s.includes("T")?new Date(s).toLocaleString("en-GB",{timeZone:"Europe/Paris",dateStyle:"medium",timeStyle:"short"})+" Paris":s;
+fetch("orbit.json").then(r=>r.json()).then(d=>{
+  document.getElementById("about").textContent=d.about;
+  const opps=d.opportunities.filter(o=>o.status==="open").sort((a,b)=>a.deadline.localeCompare(b.deadline));
+  let h=`<h2>Opportunities · updated ${esc(d.updated)}</h2>`;
+  h+=opps.map(o=>`<div class="opp"><div class="date">${esc(fmt(o.deadline))}</div><h3><a href="${esc(o.url)}">${esc(o.title)}</a></h3><div class="muted">${esc(o.type)} · ${esc(o.location||"")} · ${esc(o.value||"")}</div><div>${esc(o.requirements||"")}</div></div>`).join("");
+  h+=`<h2>Projects and ideas</h2>`;
+  h+=d.projects.map(p=>`<h3>${p.url?`<a href="${esc(p.url)}">${esc(p.title)}</a>`:esc(p.title)}</h3><div>${esc(p.summary)}</div><div class="muted">Stage: ${esc(p.stage)}${p.looking_for?` · Looking for: ${esc(p.looking_for.join(", "))}`:""}</div>`).join("");
+  h+=`<h2>Open to hearing about</h2><ul>${d.interests_for_new_opportunities.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`;
+  document.getElementById("content").innerHTML=h;
+});
+</script>
+</body>
+</html>

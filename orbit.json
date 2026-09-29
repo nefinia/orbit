@@ -1,0 +1,89 @@
+{
+  "owner": "Sofia Gallego",
+  "about": "Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.",
+  "updated": "2026-09-29",
+  "timezone": "Europe/Paris",
+  "how_to_use": "A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.",
+  "opportunities": [
+    {
+      "id": "columbia-iii-2027",
+      "title": "Columbia Institute for Ideas and Imagination Fellowship 2027-28",
+      "type": "fellowship",
+      "field": ["creative arts", "interdisciplinary"],
+      "deadline": "2026-09-30T17:00:00-04:00",
+      "location": "Reid Hall, Paris",
+      "value": "USD 75,000 stipend, Sept 2027 - May 2028",
+      "requirements": "CV, 1500-word project description, work sample, 3 recommendation letters. Creative-arts category is open to non-Columbia applicants not residing in the US.",
+      "url": "https://ideasimagination.columbia.edu/apply/applying-for-a-fellowship/",
+      "status": "open"
+    },
+    {
+      "id": "nhfp-2027",
+      "title": "NASA Hubble Fellowship Program (NHFP) 2027",
+      "type": "postdoctoral fellowship",
+      "field": ["astrophysics"],
+      "deadline": "2026-10-28T19:00:00-04:00",
+      "related_deadlines": [{"what": "reference letters", "date": "2026-11-04"}],
+      "location": "US host institution of the fellow's choice",
+      "value": "Up to 3 years; about 24 fellowships (Einstein, Hubble, Sagan)",
+      "requirements": "PhD completed on or after 2023-01-01. Letter writers upload PDFs themselves via the letter form.",
+      "url": "https://www.stsci.edu/stsci-research/fellowship/nasa-hubble-fellowship-program",
+      "status": "open"
+    }
+  ],
+  "projects": [
+    {
+      "id": "shared-sky",
+      "title": "Shared Sky",
+      "summary": "Indigenous constellations and space debris mapped onto the land. Built for the YOHAKU hackathon (Space4Innovation, Sept 2026).",
+      "url": "https://github.com/nefinia/shared-sky",
+      "stage": "built, presented",
+      "looking_for": ["exhibition or outreach venues", "cultural astronomy collaborators", "funding for a public installation"]
+    },
+    {
+      "id": "little-agent-lab",
+      "title": "Little Agent Lab",
+      "summary": "Browser puzzle game teaching AI-agent safety (least privilege, verifying safeguards, defence in depth).",
+      "url": "https://sofiagallego.com/little-agent-lab",
+      "stage": "playable",
+      "looking_for": ["AI safety education partners", "classroom and workshop use"]
+    },
+    {
+      "id": "peer-review-cooperative",
+      "title": "Scientist-owned peer-review cooperative",
+      "summary": "Independent, compensated peer review governed by the researchers who use it.",
+      "stage": "founding; one-page site with expression-of-interest form built",
+      "looking_for": ["founding members", "open-science funders", "cooperative governance advice"]
+    },
+    {
+      "id": "experience-a-la-carte",
+      "title": "Experience à la carte",
+      "summary": "A Paris website combining local events discovery with booking of musicians, photographers and other talent, built to be easy for AI agents to recommend. Free or pay-what-you-want.",
+      "stage": "idea",
+      "looking_for": ["early users in Paris", "event organisers"]
+    },
+    {
+      "id": "childrens-book",
+      "title": "Children's book",
+      "summary": "A children's book in progress.",
+      "stage": "writing",
+      "looking_for": ["publishers", "illustrators"]
+    },
+    {
+      "id": "puzzle-games",
+      "title": "Experimental puzzle and strategy games",
+      "summary": "20 finished browser games, e.g. Lumen Logic, XOR Stamps, Hexy Battle, Arrows 3D.",
+      "url": "https://sofiagallego.com/games",
+      "stage": "playable"
+    }
+  ],
+  "interests_for_new_opportunities": [
+    "astrophysics fellowships and grants (Europe and international)",
+    "AI safety research programs and grants",
+    "art-science residencies, especially astronomy and culture",
+    "cultural and Indigenous astronomy",
+    "science outreach and workshops",
+    "music performance and composition grants",
+    "startup and social-enterprise funding in France"
+  ]
+}
