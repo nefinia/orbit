@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base target="_blank">
+<title>Sofia's Orbit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; a "next up" countdown, then items grouped by how close they are, like an observing log */
+:root{
+  --bg:#f3f4f8; --surface:#ffffff; --ink:#1b1e33; --muted:#5d6179; --line:#dcdfea;
+  --accent:#3a47c9; --accent-soft:#e6e8fb;
+  --urgent:#c2402a; --urgent-soft:#fbe7e3; --soon:#a66a00; --soon-soft:#fbf0d9; --ok:#2f7a55; --ok-soft:#e1f2e8;
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10121f; --surface:#181b2c; --ink:#e6e8f5; --muted:#9a9eb8; --line:#2b2f47;
+  --accent:#8f9bff; --accent-soft:#232852;
+  --urgent:#ff8a73; --urgent-soft:#3a1f1c; --soon:#f2b84b; --soon-soft:#35291a; --ok:#6fd19f; --ok-soft:#18302a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10121f; --surface:#181b2c; --ink:#e6e8f5; --muted:#9a9eb8; --line:#2b2f47;
+  --accent:#8f9bff; --accent-soft:#232852;
+  --urgent:#ff8a73; --urgent-soft:#3a1f1c; --soon:#f2b84b; --soon-soft:#35291a; --ok:#6fd19f; --ok-soft:#18302a;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);padding-inline:16px;padding-block:28px 64px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font:500 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font:600 clamp(30px,6vw,42px)/1.05 var(--f-display);margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:60ch}
+
+.next{background:var(--ink);color:var(--bg);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:end}
+.next .eyebrow{color:inherit;opacity:.7;grid-column:1/-1}
+.next h2{font:600 22px/1.2 var(--f-display);margin:0;min-width:0;text-wrap:balance}
+.next .when{font:400 13px var(--f-mono);opacity:.75;grid-column:1}
+.next .count{font:500 34px/1 var(--f-mono);font-variant-numeric:tabular-nums;grid-column:2;grid-row:2/4;text-align:right}
+.next .count small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-top:4px}
+
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.chip:focus-visible,.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{font:600 14px var(--f-body);border:0;border-radius:10px;padding:9px 16px;background:var(--accent);color:var(--surface);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.btn.danger{background:transparent;color:var(--urgent);border:1px solid var(--line)}
+
+section{display:flex;flex-direction:column;gap:10px}
+section h3{font:600 13px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0;display:flex;gap:10px;align-items:center}
+section h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;padding:14px 16px;border-top:1px solid var(--line);align-items:start}
+.item:first-child{border-top:0}
+.item input[type=checkbox]{width:18px;height:18px;margin:3px 0 0;accent-color:var(--accent);cursor:pointer}
+.body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.title{font-weight:600;cursor:pointer;background:none;border:0;padding:0;color:inherit;font:inherit;font-weight:600;text-align:left}
+.title:hover{color:var(--accent)}
+.done .title{text-decoration:line-through;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12.5px;color:var(--muted);align-items:center}
+.tag{font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
+.notes{font-size:13.5px;color:var(--muted);margin:0;overflow-wrap:anywhere}
+.notes a,.meta a{color:var(--accent)}
+.pill{font:500 12px var(--f-mono);font-variant-numeric:tabular-nums;padding:3px 8px;border-radius:6px;white-space:nowrap;background:var(--line);color:var(--muted)}
+.pill.urgent{background:var(--urgent-soft);color:var(--urgent)}
+.pill.soon{background:var(--soon-soft);color:var(--soon)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.bell{display:inline-flex;gap:4px;align-items:center}
+.bell svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
+.empty{padding:28px 18px;text-align:center;color:var(--muted);font-size:14px}
+
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);padding:0;width:min(520px,calc(100vw - 32px))}
+dialog::backdrop{background:rgb(10 12 25 / .45)}
+form.edit{display:flex;flex-direction:column;gap:12px;padding:20px}
+form.edit h2{font:600 22px var(--f-display);margin:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.row{grid-template-columns:1fr}.next{grid-template-columns:1fr}.next .count{grid-column:1;grid-row:auto;text-align:left}}
+label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted);font-weight:500}
+input,select,textarea{font:15px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0}
+textarea{min-height:70px;resize:vertical}
+.actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.actions .spacer{flex:1}
+.hint{font-size:12.5px;color:var(--muted);margin:0}
+.status{font-size:12.5px;color:var(--muted);text-align:center}
+.foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px}
+</style>
+</head><body>
+
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Deadlines · ideas · follow-ups</span>
+    <h1>Sofia's Orbit</h1>
+    <p class="sub">Everything with a date, and everything still waiting for one. Items with a bell have a Google Calendar reminder.</p>
+  </header>
+
+  <div class="next" id="next" hidden>
+    <span class="eyebrow">Next deadline</span>
+    <h2 id="nextTitle"></h2>
+    <span class="when" id="nextWhen"></span>
+    <div class="count" id="nextCount"></div>
+  </div>
+
+  <div class="bar">
+    <div class="chips" role="group" aria-label="Filter">
+      <button class="chip" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" data-f="deadline" aria-pressed="false">Deadlines</button>
+      <button class="chip" data-f="event" aria-pressed="false">Events</button>
+      <button class="chip" data-f="waiting" aria-pressed="false">Waiting on</button>
+      <button class="chip" data-f="task" aria-pressed="false">To do</button>
+      <button class="chip" data-f="idea" aria-pressed="false">Ideas</button>
+    </div>
+    <button class="btn" id="addBtn">Add item</button>
+  </div>
+
+  <div id="groups">
+    <div class="list"><div class="empty">Loading your items… New entries you add appear here, sorted by date.</div></div>
+  </div>
+
+  <label style="flex-direction:row;align-items:center;gap:8px;font-size:13px"><input type="checkbox" id="showDone" style="width:auto"> Show completed</label>
+
+  <div class="foot">
+    <span>Your list lives in the "Orbit items" sheet in your Orbit Drive folder. Every Monday morning Claude reviews it, adds calendar reminders for new dated items, and emails you the week ahead.</span>
+    <span id="status" class="status" style="text-align:left"></span>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <form class="edit" id="form" method="dialog">
+    <h2 id="formTitle">Add item</h2>
+    <label>Title<input id="f_title" required maxlength="160" placeholder="e.g. ERC Starting Grant proposal"></label>
+    <div class="row">
+      <label>Type<select id="f_kind">
+        <option value="deadline">Deadline</option><option value="event">Event</option>
+        <option value="waiting">Waiting on</option><option value="task">To do</option><option value="idea">Idea</option>
+      </select></label>
+      <label>Project<input id="f_project" maxlength="40" placeholder="Astronomy, CosmoVentures…"></label>
+    </div>
+    <div class="row">
+      <label>Date<input id="f_date" type="date"></label>
+      <label>Time (Paris)<input id="f_time" type="time"></label>
+    </div>
+    <label>Link<input id="f_link" type="url" placeholder="https://"></label>
+    <label>Notes<textarea id="f_notes" maxlength="1200"></textarea></label>
+    <p class="hint">Dated items get a calendar reminder at the next Monday review, or right away if you ask Claude.</p>
+    <div class="actions">
+      <button type="button" class="btn danger" id="delBtn" hidden>Delete</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn ghost" id="cancelBtn">Cancel</button>
+      <button type="submit" class="btn" id="saveBtn">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(() => {
+  const TZ = "Europe/Paris";
+  const KIND = {deadline:"Deadline",event:"Event",waiting:"Waiting on",task:"To do",idea:"Idea"};
+  const $ = s => document.querySelector(s);
+  let items = [], filter = "all", db = null, col = null, editing = null, canWrite = true;
+  try { filter = localStorage.getItem("orbit-filter") || "all"; } catch(e){}
+  try { $("#showDone").checked = localStorage.getItem("orbit-done") === "1"; } catch(e){}
+
+  const fmt = new Intl.DateTimeFormat("en-GB",{timeZone:TZ,weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+  const fmtDay = new Intl.DateTimeFormat("en-GB",{timeZone:TZ,weekday:"short",day:"numeric",month:"short"});
+  const hasTime = d => typeof d === "string" && d.includes("T");
+  const toDate = d => d ? new Date(hasTime(d) ? d : d + "T12:00:00") : null;
+  const when = d => !d ? "" : (hasTime(d) ? fmt.format(toDate(d)) : fmtDay.format(toDate(d)));
+
+  function daysLeft(d){
+    const t = toDate(d); if(!t) return null;
+    const ms = t - Date.now();
+    return ms / 864e5;
+  }
+  function pill(it){
+    if(!it.due || it.status === "done") return "";
+    const dl = daysLeft(it.due);
+    let cls = "ok", txt;
+    if(dl < 0){ cls="urgent"; txt = Math.abs(dl) < 1 ? "overdue" : Math.round(-dl)+"d overdue"; }
+    else if(dl < 1){ cls="urgent"; txt = Math.max(1,Math.round(dl*24))+"h left"; }
+    else if(dl < 7){ cls = dl < 3 ? "urgent" : "soon"; txt = Math.floor(dl)+"d left"; }
+    else txt = Math.floor(dl)+"d left";
+    if(it.kind === "waiting" || it.kind === "event") cls = dl < 3 ? "soon" : "";
+    return `<span class="pill ${cls}">${txt}</span>`;
+  }
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const safeUrl = u => /^https?:\/\//i.test(u||"") ? u : "";
+  const bell = `<span class="bell"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>Calendar</span>`;
+
+  function row(it){
+    const link = safeUrl(it.link);
+    return `<div class="item ${it.status==="done"?"done":""}" data-id="${esc(it.id)}">
+      <input type="checkbox" aria-label="Mark done" ${it.status==="done"?"checked":""} ${canWrite?"":"disabled"}>
+      <div class="body">
+        <button class="title" type="button">${esc(it.title)}</button>
+        <div class="meta">
+          <span class="tag">${esc(KIND[it.kind]||it.kind)}</span>
+          ${it.project?`<span>${esc(it.project)}</span>`:""}
+          ${it.due?`<span>${esc(when(it.due))}</span>`:""}
+          ${it.calendar?bell:""}
+          ${link?`<a href="${esc(link)}" target="_blank" rel="noopener">Open link</a>`:""}
+        </div>
+        ${it.notes?`<p class="notes">${esc(it.notes)}</p>`:""}
+      </div>
+      ${pill(it)}
+    </div>`;
+  }
+
+  function render(){
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.f===filter)));
+    const showDone = $("#showDone").checked;
+    let list = items.filter(i => (filter==="all"||i.kind===filter) && (showDone || i.status!=="done"));
+    const dated = list.filter(i=>i.due).sort((a,b)=>toDate(a.due)-toDate(b.due));
+    const undated = list.filter(i=>!i.due).sort((a,b)=>(a.kind>b.kind?1:-1)||a.title.localeCompare(b.title));
+    const groups = [
+      ["Past due", dated.filter(i=>i.status!=="done" && daysLeft(i.due)<0)],
+      ["Next 7 days", dated.filter(i=>{const d=daysLeft(i.due);return d>=0&&d<7 || (i.status==="done"&&d<7&&d>=-60&&false)})],
+      ["Later", dated.filter(i=>daysLeft(i.due)>=7)],
+      ["Done (dated)", dated.filter(i=>i.status==="done" && daysLeft(i.due)<0)],
+      ["No date yet", undated],
+    ].filter(g=>g[1].length);
+    $("#groups").innerHTML = groups.length ? groups.map(([h,g]) =>
+      `<section><h3>${h} · ${g.length}</h3><div class="list">${g.map(row).join("")}</div></section>`).join("")
+      : `<div class="list"><div class="empty">Nothing here. Use “Add item” to log a deadline, a follow-up or an idea.</div></div>`;
+    $("#groups").style.cssText = "display:flex;flex-direction:column;gap:24px";
+
+    const nxt = items.filter(i=>i.kind==="deadline"&&i.status!=="done"&&i.due&&daysLeft(i.due)>=0).sort((a,b)=>toDate(a.due)-toDate(b.due))[0];
+    $("#next").hidden = !nxt;
+    if(nxt){
+      $("#nextTitle").textContent = nxt.title;
+      $("#nextWhen").textContent = when(nxt.due) + " · Paris time";
+      const dl = daysLeft(nxt.due);
+      $("#nextCount").innerHTML = dl < 1 ? `${Math.max(1,Math.round(dl*24))}<small>hours left</small>` : `${Math.floor(dl)}<small>${Math.floor(dl)===1?"day":"days"} left</small>`;
+    }
+  }
+
+  $(".chips").addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if(!b) return;
+    filter = b.dataset.f; try{localStorage.setItem("orbit-filter",filter)}catch(e){}
+    render();
+  });
+  $("#showDone").addEventListener("change", () => { try{localStorage.setItem("orbit-done",$("#showDone").checked?"1":"0")}catch(e){} render(); });
+
+  $("#groups").addEventListener("change", async e => {
+    if(e.target.type !== "checkbox" || !col) return;
+    const id = e.target.closest(".item").dataset.id;
+    try { await col.doc(id).update({status: e.target.checked ? "done" : "open"}); }
+    catch(err){ status("Couldn't save that change. Try again in a moment."); e.target.checked = !e.target.checked; }
+  });
+  $("#groups").addEventListener("click", e => {
+    const t = e.target.closest(".title"); if(!t) return;
+    openForm(items.find(i => i.id === t.closest(".item").dataset.id));
+  });
+
+  function splitDue(d){
+    if(!d) return ["",""];
+    if(!hasTime(d)) return [d,""];
+    const t = toDate(d);
+    const p = new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(t);
+    const g = k => p.find(x=>x.type===k).value;
+    return [`${g("year")}-${g("month")}-${g("day")}`, `${g("hour")==="24"?"00":g("hour")}:${g("minute")}`];
+  }
+  function parisISO(date, time){
+    if(!date) return null;
+    if(!time) return date;
+    // work out Paris offset for that moment
+    const guess = new Date(`${date}T${time}:00Z`);
+    const p = new Intl.DateTimeFormat("en-US",{timeZone:TZ,timeZoneName:"longOffset"}).formatToParts(guess).find(x=>x.type==="timeZoneName").value;
+    const off = (p.match(/GMT([+-]\d{2}:\d{2})/)||[,"+00:00"])[1];
+    return `${date}T${time}:00${off}`;
+  }
+  function openForm(it){
+    if(!canWrite) return;
+    editing = it || null;
+    $("#formTitle").textContent = it ? "Edit item" : "Add item";
+    $("#f_title").value = it?.title || "";
+    $("#f_kind").value = it?.kind || "deadline";
+    $("#f_project").value = it?.project || "";
+    const [d,t] = splitDue(it?.due);
+    $("#f_date").value = d; $("#f_time").value = t;
+    $("#f_link").value = it?.link || "";
+    $("#f_notes").value = it?.notes || "";
+    $("#delBtn").hidden = !it;
+    $("#dlg").showModal();
+  }
+  $("#addBtn").addEventListener("click", () => openForm(null));
+  $("#cancelBtn").addEventListener("click", () => $("#dlg").close());
+  let delArmed = false;
+  $("#delBtn").addEventListener("click", async () => {
+    if(!delArmed){ delArmed = true; $("#delBtn").textContent = "Tap again to delete"; setTimeout(()=>{delArmed=false;$("#delBtn").textContent="Delete"},3000); return; }
+    delArmed = false; $("#delBtn").textContent = "Delete";
+    try { await col.doc(editing.id).delete(); $("#dlg").close(); status("Deleted."); }
+    catch(e){ status("Couldn't delete it. Try again in a moment."); }
+  });
+  $("#form").addEventListener("submit", async e => {
+    e.preventDefault();
+    if(!col){ status("Saving isn't available in this view."); return; }
+    const due = parisISO($("#f_date").value, $("#f_time").value);
+    const body = {
+      title: $("#f_title").value.trim(), kind: $("#f_kind").value,
+      project: $("#f_project").value.trim(), due,
+      link: $("#f_link").value.trim(), notes: $("#f_notes").value.trim(),
+      status: editing?.status || "open",
+      calendar: editing && editing.due === due ? !!editing.calendar : false,
+      updated: new Date().toISOString(),
+    };
+    if(!body.title) return;
+    $("#saveBtn").disabled = true;
+    try {
+      if(editing) await col.doc(editing.id).set({...body, created: editing.created || body.updated});
+      else await col.add({...body, created: body.updated});
+      $("#dlg").close(); status(editing ? "Saved." : "Added.");
+    } catch(err){
+      if(err?.code === "invalid_argument"){ canWrite = false; status("You can view this list but not change it."); }
+      else if(err?.code === "quota_exceeded") status("The list is full. Delete some completed items first.");
+      else status("Couldn't save. Try again in a moment.");
+    } finally { $("#saveBtn").disabled = false; }
+  });
+
+  let stTimer; function status(m){ $("#status").textContent = m; clearTimeout(stTimer); stTimer = setTimeout(()=>$("#status").textContent="",4000); }
+
+  render();
+  setInterval(render, 60000);
+
+  // Google Apps Script data layer
+  const run = (fn, ...args) => new Promise((res, rej) => google.script.run.withSuccessHandler(res).withFailureHandler(rej)[fn](...args));
+  async function refresh(){ try { items = await run('listItems'); render(); } catch(e){ status("Couldn't load your list. Check your connection."); } }
+  col = {
+    doc: id => ({
+      update: async patch => { const it = items.find(i => i.id === id); await run('saveItem', {...it, ...patch}); await refresh(); },
+      set: async body => { await run('saveItem', {...body, id}); await refresh(); },
+      delete: async () => { await run('deleteItem', id); await refresh(); }
+    }),
+    add: async body => { await run('saveItem', body); await refresh(); }
+  };
+  refresh();
+  setInterval(refresh, 120000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+})();
+</script>
+
+</body></html>
