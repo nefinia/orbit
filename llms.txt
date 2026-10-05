@@ -2,7 +2,7 @@
 
 Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.
 
-_Last updated 2026-09-29. Machine-readable version: [`orbit.json`](orbit.json)._
+_Last updated 2026-10-05. Machine-readable version: [`orbit.json`](orbit.json)._
 
 A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.
 
@@ -10,12 +10,10 @@ A curated, public list of funding calls, deadlines and project ideas Sofia is tr
 
 | Deadline | Opportunity | Type | Where | Value |
 |---|---|---|---|---|
-| 2026-09-30 17:00 (UTC-04) | [Columbia Institute for Ideas and Imagination Fellowship 2027-28](https://ideasimagination.columbia.edu/apply/applying-for-a-fellowship/) | fellowship | Reid Hall, Paris | USD 75,000 stipend, Sept 2027 - May 2028 |
 | 2026-10-28 19:00 (UTC-04) | [NASA Hubble Fellowship Program (NHFP) 2027](https://www.stsci.edu/stsci-research/fellowship/nasa-hubble-fellowship-program) | postdoctoral fellowship | US host institution of the fellow's choice | Up to 3 years; about 24 fellowships (Einstein, Hubble, Sagan) |
 
 Details:
 
-- **Columbia Institute for Ideas and Imagination Fellowship 2027-28**: CV, 1500-word project description, work sample, 3 recommendation letters. Creative-arts category is open to non-Columbia applicants not residing in the US.
 - **NASA Hubble Fellowship Program (NHFP) 2027**: PhD completed on or after 2023-01-01. Letter writers upload PDFs themselves via the letter form. (reference letters due 2026-11-04)
 
 ## Projects and ideas
