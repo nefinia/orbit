@@ -2,7 +2,7 @@
 
 Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.
 
-_Last updated 2026-10-18. Machine-readable version: [`orbit.json`](orbit.json)._
+_Last updated 2026-10-19. Machine-readable version: [`orbit.json`](orbit.json)._
 
 A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.
 
