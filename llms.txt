@@ -11,11 +11,13 @@ A curated, public list of funding calls, deadlines and project ideas Sofia is tr
 | Deadline | Opportunity | Type | Where | Value |
 |---|---|---|---|---|
 | 2026-10-28 19:00 (UTC-04) | [NASA Hubble Fellowship Program (NHFP) 2027](https://www.stsci.edu/stsci-research/fellowship/nasa-hubble-fellowship-program) | postdoctoral fellowship | US host institution of the fellow's choice | Up to 3 years; about 24 fellowships (Einstein, Hubble, Sagan) |
+| 2026-10-30 13:00 (UTC+01) | [DIM AI4IDF Call for Scientific Events and AI Initiatives 2027](https://ai4idf.fr/calls/view/md8b30c1a2346cc7b2a2/0) | event funding | Ile-de-France (events held May - Dec 2027) | EUR 2,500 - 5,000 per event |
 | 2026-11-01 23:59 (UTC-12) | [Kairos Generator Residency (AI safety), Winter 2027](https://generatorresidency.org/) | residency | Constellation office, Berkeley, USA (18 Jan - 9 Apr 2027) | USD 8,500 per month (salary plus housing), travel and project budgets |
 
 Details:
 
 - **NASA Hubble Fellowship Program (NHFP) 2027**: PhD completed on or after 2023-01-01. Letter writers upload PDFs themselves via the letter form. (reference letters due 2026-11-04)
+- **DIM AI4IDF Call for Scientific Events and AI Initiatives 2027**: Open to academic, industry and nonprofit teams organising AI-related events in Ile-de-France: summer schools, workshops, seminars, mini-conferences, demonstrations, hackathons. One PDF on the official template, emailed to ai4idf_call_2026@inria.fr. Research axes: learning and optimization, NLP and human interaction, robotics, AI for health, education and creation. (results announced due 2026-11-23)
 - **Kairos Generator Residency (AI safety), Winter 2027**: Open to generalists building AI safety programs and organizations. Deadline is end of day anywhere on Earth; apply by 26 Oct for early decision if a US visa is needed.
 
 ## Projects and ideas

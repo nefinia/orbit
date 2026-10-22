@@ -31,6 +31,19 @@
       "status": "open"
     },
     {
+      "id": "ai4idf-events-2027",
+      "title": "DIM AI4IDF Call for Scientific Events and AI Initiatives 2027",
+      "type": "event funding",
+      "field": ["AI", "workshops", "hackathons", "education", "creation"],
+      "deadline": "2026-10-30T13:00:00+01:00",
+      "related_deadlines": [{"what": "results announced", "date": "2026-11-23"}],
+      "location": "Ile-de-France (events held May - Dec 2027)",
+      "value": "EUR 2,500 - 5,000 per event",
+      "requirements": "Open to academic, industry and nonprofit teams organising AI-related events in Ile-de-France: summer schools, workshops, seminars, mini-conferences, demonstrations, hackathons. One PDF on the official template, emailed to ai4idf_call_2026@inria.fr. Research axes: learning and optimization, NLP and human interaction, robotics, AI for health, education and creation.",
+      "url": "https://ai4idf.fr/calls/view/md8b30c1a2346cc7b2a2/0",
+      "status": "open"
+    },
+    {
       "id": "kairos-generator-2027",
       "title": "Kairos Generator Residency (AI safety), Winter 2027",
       "type": "residency",
