@@ -2,7 +2,7 @@
 
 Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.
 
-_Last updated 2026-10-30. Machine-readable version: [`orbit.json`](orbit.json)._
+_Last updated 2026-10-31. Machine-readable version: [`orbit.json`](orbit.json)._
 
 A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.
 
@@ -10,12 +10,10 @@ A curated, public list of funding calls, deadlines and project ideas Sofia is tr
 
 | Deadline | Opportunity | Type | Where | Value |
 |---|---|---|---|---|
-| 2026-10-30 13:00 (UTC+01) | [DIM AI4IDF Call for Scientific Events and AI Initiatives 2027](https://ai4idf.fr/calls/view/md8b30c1a2346cc7b2a2/0) | event funding | Ile-de-France (events held May - Dec 2027) | EUR 2,500 - 5,000 per event |
 | 2026-11-01 23:59 (UTC-12) | [Kairos Generator Residency (AI safety), Winter 2027](https://generatorresidency.org/) | residency | Constellation office, Berkeley, USA (18 Jan - 9 Apr 2027) | USD 8,500 per month (salary plus housing), travel and project budgets |
 
 Details:
 
-- **DIM AI4IDF Call for Scientific Events and AI Initiatives 2027**: Open to academic, industry and nonprofit teams organising AI-related events in Ile-de-France: summer schools, workshops, seminars, mini-conferences, demonstrations, hackathons. One PDF on the official template, emailed to ai4idf_call_2026@inria.fr. Research axes: learning and optimization, NLP and human interaction, robotics, AI for health, education and creation. (results announced due 2026-11-23)
 - **Kairos Generator Residency (AI safety), Winter 2027**: Open to generalists building AI safety programs and organizations. Deadline is end of day anywhere on Earth; apply by 26 Oct for early decision if a US visa is needed.
 
 ## Projects and ideas
