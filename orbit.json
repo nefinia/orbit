@@ -1,7 +1,7 @@
 {
   "owner": "Sofia Gallego",
   "about": "Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.",
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "timezone": "Europe/Paris",
   "how_to_use": "A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.",
   "opportunities": [
@@ -54,6 +54,18 @@
       "requirements": "Open to generalists building AI safety programs and organizations. Deadline is end of day anywhere on Earth; apply by 26 Oct for early decision if a US visa is needed.",
       "url": "https://generatorresidency.org/",
       "status": "closed"
+    },
+    {
+      "id": "jwst-mct-whitepapers-2026",
+      "title": "JWST Multi-Cycle Treasury Program concepts: call for white papers",
+      "type": "call for ideas",
+      "field": ["astrophysics"],
+      "deadline": "2026-11-04",
+      "location": "Online (STScI)",
+      "value": "Input to large JWST Treasury programs",
+      "requirements": "White papers with compelling science ideas for programs requiring large allocations of JWST time.",
+      "url": "https://www.stsci.edu/contents/news/jwst/2026/closing-soon-call-for-white-papers-for-multi-cycle-treasury-program-concepts-with-jwst",
+      "status": "open"
     }
   ],
   "projects": [
