@@ -2,7 +2,7 @@
 
 Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.
 
-_Last updated 2026-11-04. Machine-readable version: [`orbit.json`](orbit.json)._
+_Last updated 2026-11-05. Machine-readable version: [`orbit.json`](orbit.json)._
 
 A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.
 
@@ -10,11 +10,9 @@ A curated, public list of funding calls, deadlines and project ideas Sofia is tr
 
 | Deadline | Opportunity | Type | Where | Value |
 |---|---|---|---|---|
-| 2026-11-04 | [JWST Multi-Cycle Treasury Program concepts: call for white papers](https://www.stsci.edu/contents/news/jwst/2026/closing-soon-call-for-white-papers-for-multi-cycle-treasury-program-concepts-with-jwst) | call for ideas | Online (STScI) | Input to large JWST Treasury programs |
 
 Details:
 
-- **JWST Multi-Cycle Treasury Program concepts: call for white papers**: White papers with compelling science ideas for programs requiring large allocations of JWST time.
 
 ## Projects and ideas
 
