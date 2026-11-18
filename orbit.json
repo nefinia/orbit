@@ -1,7 +1,7 @@
 {
   "owner": "Sofia Gallego",
   "about": "Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.",
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "timezone": "Europe/Paris",
   "how_to_use": "A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.",
   "opportunities": [
@@ -66,6 +66,30 @@
       "requirements": "White papers with compelling science ideas for programs requiring large allocations of JWST time.",
       "url": "https://www.stsci.edu/contents/news/jwst/2026/closing-soon-call-for-white-papers-for-multi-cycle-treasury-program-concepts-with-jwst",
       "status": "closed"
+    },
+    {
+      "id": "apart-sl5-threat-intel-2026",
+      "title": "Apart Research x SL5: Threat Intelligence & Threat Modelling Sprint",
+      "type": "hackathon",
+      "field": ["AI safety", "security"],
+      "deadline": "2026-12-04",
+      "location": "Online (4-6 Dec 2026)",
+      "value": "Research sprint; top teams may be invited to the Apart Fellowship",
+      "requirements": "Can LLMs scale up threat intelligence and threat modelling for AI data centres facing nation-state attackers? Sign up on the sprint page before it starts.",
+      "url": "https://apartresearch.com/sprints/threat-intelligence-threat-modelling-2026",
+      "status": "open"
+    },
+    {
+      "id": "apart-agent-attribution-2026",
+      "title": "Apart Research Agent Attribution Hackathon",
+      "type": "hackathon",
+      "field": ["AI safety", "AI agents"],
+      "deadline": "2026-12-11",
+      "location": "Online (11-13 Dec 2026)",
+      "value": "USD 2,000 in prizes",
+      "requirements": "Telling rogue AI agents apart from human-steered ones. Sign up on the sprint page before it starts.",
+      "url": "https://apartresearch.com/sprints/agent-attribution-2026",
+      "status": "open"
     }
   ],
   "projects": [

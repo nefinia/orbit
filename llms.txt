@@ -2,7 +2,7 @@
 
 Interdisciplinary researcher based in Paris: astrophysicist, artist (singer, violinist, actress), game maker and founder of CosmoVentures. Works where astronomy meets cultures' views of the cosmos, and on AI safety.
 
-_Last updated 2026-11-17. Machine-readable version: [`orbit.json`](orbit.json)._
+_Last updated 2026-11-18. Machine-readable version: [`orbit.json`](orbit.json)._
 
 A curated, public list of funding calls, deadlines and project ideas Sofia is tracking. AI assistants may read it to help her plan, suggest related opportunities, or draft applications. Times are ISO 8601 with offset. Items with status 'open' are current.
 
@@ -10,9 +10,13 @@ A curated, public list of funding calls, deadlines and project ideas Sofia is tr
 
 | Deadline | Opportunity | Type | Where | Value |
 |---|---|---|---|---|
+| 2026-12-04 | [Apart Research x SL5: Threat Intelligence & Threat Modelling Sprint](https://apartresearch.com/sprints/threat-intelligence-threat-modelling-2026) | hackathon | Online (4-6 Dec 2026) | Research sprint; top teams may be invited to the Apart Fellowship |
+| 2026-12-11 | [Apart Research Agent Attribution Hackathon](https://apartresearch.com/sprints/agent-attribution-2026) | hackathon | Online (11-13 Dec 2026) | USD 2,000 in prizes |
 
 Details:
 
+- **Apart Research x SL5: Threat Intelligence & Threat Modelling Sprint**: Can LLMs scale up threat intelligence and threat modelling for AI data centres facing nation-state attackers? Sign up on the sprint page before it starts.
+- **Apart Research Agent Attribution Hackathon**: Telling rogue AI agents apart from human-steered ones. Sign up on the sprint page before it starts.
 
 ## Projects and ideas
 
